@@ -934,7 +934,8 @@ CREATE TABLE [BOLDBI_BackgroundJobs](
 	[ResourceInfo] [nvarchar](max) NULL,
 	[CanIncludeSensitiveInfo] [bit] NULL,
 	[IsSampleData] [bit] NULL,
-    [IsActive] [bit] NOT NULL)
+    [IsActive] [bit] NOT NULL,
+	[ParentJobId] [int] NULL)
 ;
 
 CREATE TABLE [BOLDBI_UploadDataSourceMapping](
@@ -984,7 +985,9 @@ CREATE TABLE [BoldBI_ai_qnawidgethistory] (
    haserror BIT,
    chartType TEXT,
    uservote TEXT,
-   isreported BIT)
+   isreported BIT,
+   search_date DATETIME,
+   widgetid NVARCHAR(255))
 ;
 
 ---- PASTE INSERT Queries below this section --------
@@ -1094,6 +1097,8 @@ INSERT into [BOLDBI_ExportType] (Name,IsActive) VALUES (N'Refresh', 1)
 INSERT into [BOLDBI_ExportType] (Name,IsActive) VALUES (N'PPT', 1)
 ;
 INSERT into [BOLDBI_ExportType] (Name,IsActive) VALUES (N'CSV', 1)
+;
+INSERT into [BOLDBI_ExportType] (Name,IsActive) VALUES (N'DashboardCache', 1)
 ;
 
 INSERT into [BOLDBI_RecurrenceType] (Name,IsActive) VALUES (N'Daily', 1)

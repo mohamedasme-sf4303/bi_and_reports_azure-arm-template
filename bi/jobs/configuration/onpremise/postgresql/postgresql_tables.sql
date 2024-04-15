@@ -926,7 +926,8 @@ CREATE TABLE SyncDS_BackgroundJobs (
 	ResourceInfo text NULL,
 	CanIncludeSensitiveInfo smallint NULL,
 	IsSampleData smallint NULL,
-	IsActive smallint NOT NULL)
+	IsActive smallint NOT NULL,
+	ParentJobId int NULL)
 ;
 
 CREATE TABLE SyncDS_UploadDataSourceMapping (
@@ -977,7 +978,9 @@ CREATE TABLE SyncDS_ai_qnawidgethistory (
    haserror BOOLEAN,
    chartType TEXT,
    uservote TEXT,
-   isreported BOOLEAN)
+   isreported BOOLEAN,
+   search_date timestamp without time zone,
+   widgetid TEXT)
 ;
 
 ---- PASTE INSERT Queries below this section --------
@@ -1095,6 +1098,8 @@ INSERT into SyncDS_ExportType (Name,IsActive) VALUES (N'Refresh', 1)
 INSERT into SyncDS_ExportType (Name,IsActive) VALUES (N'PPT', 1)
 ;
 INSERT into SyncDS_ExportType (Name,IsActive) VALUES (N'CSV', 1)
+;
+INSERT INTO SyncDS_ExportType (Name,  IsActive) VALUES (N'DashboardCache',1)
 ;
 
 INSERT into SyncDS_RecurrenceType (Name,IsActive) VALUES (N'Daily', 1)
